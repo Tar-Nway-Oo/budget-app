@@ -1,0 +1,15 @@
+*,*::before, *::after {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+   padding: 0;
+}
+
+button {
+   padding: .3em .5em;
+   border-radius: .3em;
+   outline: none;
+   cursor: pointer;
+}

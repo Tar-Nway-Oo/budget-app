@@ -1,0 +1,30 @@
+.card {
+   padding: 1em;
+   box-shadow: 0 0 5px 1px hsl(0, 0%, 50%);
+}
+
+.card > .head {
+   margin-bottom: 1em;
+   display: flex;
+   justify-content: space-between;
+   align-items: baseline;
+}
+
+.name {
+   font-size: 1.3rem;
+}
+
+.modal {
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
+   z-index: 3;
+}
+
+.modal.hide {
+   top: -100px;
+}
+
+.modal.show {
+   top: 100px;
+}
