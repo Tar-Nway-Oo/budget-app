@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useBudget } from "./contexts/useBudget"
+import { useBudgets } from "./contexts/useBudget"
 import BudgetCard from "./components/BudgetCard"
 import AddBudgetModal from "./components/AddBudgetModal";
 import "./App.css"
 
 export default function App() {
-  const {budgets, addBudget} = useBudget();
+  const {budgets, addBudget} = useBudgets();
   const [showModal, setShowModal] = useState(false);
 
   return (

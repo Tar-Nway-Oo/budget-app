@@ -23,7 +23,7 @@ const initContext = {
 
 const BudgetContext = createContext<BudgetContextType>(initContext);
 
-export function useBudget() {
+export function useBudgets() {
    return useContext(BudgetContext);
 }
 
