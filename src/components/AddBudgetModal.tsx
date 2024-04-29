@@ -22,7 +22,7 @@ export default function AddBudgetModal({showBudgetModal, setShowBudgetModal}: Ad
   }
 
   return (
-    <form className={`modal ${showBudgetModal ? "show" : "hide"}`} onSubmit={handleSubmit}>
+    <form className={`modal ${showBudgetModal ? "show" : ""}`} onSubmit={handleSubmit}>
       <p className="form-heading">New Budget</p>
       <div className="input-group">
         <label htmlFor="name">Name: </label>

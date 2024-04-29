@@ -1,4 +1,5 @@
 .card {
+   position: relative;
    padding: 1em;
    box-shadow: 0 0 5px 1px hsl(0, 0%, 50%);
 }
@@ -19,16 +20,13 @@
    left: 50%;
    z-index: 3;
    transition: transform 200ms ease-in-out;
+   transform: translate(-50%, -500px);
    box-shadow: 0 0 5px 1px gray;
    padding: 1em;
    display: flex;
    flex-direction: column;
    align-items: flex-start;
    gap: 1em;
-}
-
-.modal.hide {
-   transform: translate(-50%, -500px);
 }
 
 .modal.show {
@@ -46,4 +44,28 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
+}
+.view-expenses-modal {
+   cursor: pointer;
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: hsl(160, 70%, 95%);
+   top: 0;
+   left: 0;
+   z-index: 2;
+   box-shadow: 0 0 5px 1px gray;
+   padding: 1em;
+   transition: transform 200ms ease-in-out;
+   transform: scale(0);
+   transform-origin: left;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: .3em;
+   flex-wrap: wrap;
+}
+
+.view-expenses-modal.show {
+   transform: scale(1);
 }
