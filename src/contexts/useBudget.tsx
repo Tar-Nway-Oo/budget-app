@@ -1,12 +1,15 @@
-import { ReactNode, createContext, useContext, useState } from "react"
+import { ReactNode, createContext, useContext } from "react"
+import { useLocalStorage } from "../hooks/useLocalStorage"
 import {v4 as uuidV4} from "uuid"
 
 type BudgetContextType = {
    budgets: budget[]
-   addBudget: ({name, max}: Partial<budget>) => void;
+   addBudget: ({name, max}: Partial<budget>) => void
    expenses: expense[]
-   addExpense: ({budgetId, description, amount}: Partial<expense>) => void;
-   viewExpenses: (budgetId: string) => expense[];
+   addExpense: ({budgetId, description, amount}: Partial<expense>) => void
+   getExpenses: (budgetId: string) => expense[]
+   deleteBudget: (budgetId: string) => void
+   deleteExpense: (expenseId: string) => void
 }
 
 type BudgetContextProviderProps = {
@@ -26,12 +29,19 @@ export type expense = {
    amount: number
 }
 
+const KEYS = {
+   BUDGETS: "budgets",
+   EXPENSES: "expenses"
+};
+
 const initContext = {
    budgets: [],
    addBudget: () => {},
    expenses: [],
    addExpense: () => {},
-   viewExpenses: () => []
+   getExpenses: () => [],
+   deleteBudget: () => {},
+   deleteExpense: () => {}
 };
 
 const BudgetContext = createContext<BudgetContextType>(initContext);
@@ -42,12 +52,12 @@ export function useBudgets() {
 
 export default function BudgetContextProvider({children}: BudgetContextProviderProps) {
 
-   const [budgets, setBudget] = useState<budget[]>([]);
-   const [expenses, setExpenses] = useState<expense[]>([]);
+   const [budgets, setBudgets] = useLocalStorage<budget[]>(KEYS.BUDGETS, []);
+   const [expenses, setExpenses] = useLocalStorage<expense[]>(KEYS.EXPENSES, []);
 
    function addBudget({name, max}: Partial<budget>) {
       if (name == null || max == null) return;
-      setBudget(prevBudgets => {
+      setBudgets(prevBudgets => {
          if (prevBudgets.find(budget => budget.name === name) == null) {
             return [...prevBudgets, {id: uuidV4(), name, max}];
          } else {
@@ -61,12 +71,21 @@ export default function BudgetContextProvider({children}: BudgetContextProviderP
       setExpenses(prevExpenses => ([...prevExpenses, {id: uuidV4(), budgetId, description, amount}]));
    }
 
-   function viewExpenses(budgetId: string) {
-      return expenses.filter(expense => expense.budgetId === budgetId)
+   function getExpenses(budgetId: string) {
+      return expenses.filter(expense => expense.budgetId === budgetId);
+   }
+
+   function deleteBudget(budgetId: string) {
+      setBudgets(prevBudgets => prevBudgets.filter(budget => budget.id !== budgetId));
+      setExpenses(prevExpenses => prevExpenses.filter(expense => expense.budgetId !== budgetId));
+   }
+
+   function deleteExpense(expenseId: string) {
+      setExpenses(prevExpenses => prevExpenses.filter(expense => expense.id !== expenseId));
    }
 
    return (
-      <BudgetContext.Provider value={{budgets, addBudget, expenses, addExpense, viewExpenses}}>
+      <BudgetContext.Provider value={{budgets, addBudget, expenses, addExpense, getExpenses, deleteBudget, deleteExpense}}>
          {children}
       </BudgetContext.Provider>
    )

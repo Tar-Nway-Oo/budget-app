@@ -15,6 +15,20 @@
    font-size: 1.3rem;
 }
 
+.full-amount {
+   color: hsl(0, 100%, 50%);
+}
+
+.view-expenses-btn:not(:disabled) {
+   border-color: hsl(240, 80%, 50%);
+   color: hsl(240, 80%, 50%);
+}
+
+.delete-budget-btn {
+   border-color: hsl(0, 30%, 50%);
+   color: hsl(0, 30%, 50%);
+}
+
 .modal {
    position: absolute;
    left: 50%;
@@ -46,10 +60,9 @@
    align-items: center;
 }
 .view-expenses-modal {
-   cursor: pointer;
    position: absolute;
-   width: 100%;
-   height: 100%;
+   min-width: 100%;
+   min-height: 100%;
    background-color: hsl(160, 70%, 95%);
    top: 0;
    left: 0;
@@ -59,13 +72,36 @@
    transition: transform 200ms ease-in-out;
    transform: scale(0);
    transform-origin: left;
-   display: flex;
-   flex-direction: column;
-   align-items: flex-start;
-   gap: .3em;
-   flex-wrap: wrap;
 }
 
 .view-expenses-modal.show {
    transform: scale(1);
+}
+
+.header {
+   position: relative;
+}
+
+.header > .heading {
+   font-size: 1.3rem;
+}
+
+.header > .remove-icon {
+   position: absolute;
+   top: 0;
+   right: 0;
+   cursor: pointer;
+   font-weight: bold;
+   border: 1px solid;
+   width: 16px;
+   height: 16px;
+   border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: hsl(0, 0%, 100%);
+}
+
+.list-item {
+   color: hsl(0, 0%, 20%);
 }

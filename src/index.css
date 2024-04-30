@@ -11,5 +11,12 @@ button {
    padding: .3em .5em;
    border-radius: .3em;
    outline: none;
+}
+
+button:not(:disabled) {
    cursor: pointer;
+}
+
+button:not(:disabled):hover, button:not(:disabled):focus {
+   opacity: .8;
 }

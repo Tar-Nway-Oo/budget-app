@@ -19,8 +19,8 @@ export default function App() {
       <div className="header">
         <h1 className="heading">Budget App</h1>
         <div className="btn-group">
-          <button onClick={() => setShowBudgetModal(prevState => !prevState)}>Add Budget</button>
-          <button onClick={() => setShowExpenseModal(prevState => !prevState)} disabled={hasNobudgets}>Add Expense</button>
+          <button className="add-budget-btn" onClick={() => setShowBudgetModal(prevState => !prevState)}>Add Budget</button>
+          <button className="add-expense-btn" onClick={() => setShowExpenseModal(prevState => !prevState)} disabled={hasNobudgets}>Add Expense</button>
         </div>
       </div>
       <div className="card-container">
