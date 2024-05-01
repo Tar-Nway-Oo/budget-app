@@ -33,8 +33,8 @@ export default function AddBudgetModal({showBudgetModal, setShowBudgetModal}: Ad
         <input ref={maxRef} id="maximum-amount" defaultValue={100} type="number" required />
       </div>
       <div className="btn-group">
-        <button type="button" onClick={() => setShowBudgetModal(false)}>Cancel</button>
-        <button type="submit">Add</button>
+        <button className="cancel-btn" type="button" onClick={() => setShowBudgetModal(false)}>Cancel</button>
+        <button className="add-btn" type="submit">Add</button>
       </div>
     </form>
   )

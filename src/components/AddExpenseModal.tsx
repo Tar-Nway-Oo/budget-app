@@ -40,8 +40,8 @@ export default function AddExpenseModal({ showBudgetModal, showExpenseModal, set
         ))}
       </select>
       <div className="btn-group">
-        <button type="button" onClick={() => setShowExpenseModal(false)}>Cancel</button>
-        <button type="submit">Add</button>
+        <button className="cancel-btn" type="button" onClick={() => setShowExpenseModal(false)}>Cancel</button>
+        <button className="add-btn" type="submit">Add</button>
       </div>
     </form>
   )

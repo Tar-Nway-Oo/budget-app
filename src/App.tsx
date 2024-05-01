@@ -3,6 +3,7 @@ import { useBudgets } from "./contexts/useBudget"
 import BudgetCard from "./components/BudgetCard"
 import AddBudgetModal from "./components/AddBudgetModal";
 import AddExpenseModal from "./components/AddExpenseModal";
+import NoBudgets from "./components/NoBudgets";
 import "./App.css"
 
 export default function App() {
@@ -23,11 +24,13 @@ export default function App() {
           <button className="add-expense-btn" onClick={() => setShowExpenseModal(prevState => !prevState)} disabled={hasNobudgets}>Add Expense</button>
         </div>
       </div>
-      <div className="card-container">
-        {budgets.map(budget => (
-          <BudgetCard key={budget.id} {...budget} />
-        ))}
-      </div>
+      {hasNobudgets ? <NoBudgets /> 
+        : <div className="card-container">
+            {budgets.map(budget => (
+              <BudgetCard key={budget.id} {...budget} />
+            ))}
+          </div>
+      }
     </div>
   )
 }
